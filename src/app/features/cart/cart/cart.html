@@ -1,0 +1,139 @@
+<main class="container my-5 cart-page">
+  <div class="wrap" id="long">
+    <!-- 🔹 Tiêu đề trang giỏ hàng -->
+    <h3 class="mb-4 text-center fw-semibold">Giỏ hàng của bạn</h3>
+
+    <!-- 🔸 Trường hợp giỏ hàng trống -->
+    <div *ngIf="cart.length === 0" class="empty-cart text-center py-5">
+      <p class="text-muted fs-5">Giỏ hàng của bạn đang trống</p>
+      <a [routerLink]="['/products']" class="btn btn-outline-primary mt-3">
+        🛍 Mua sắm ngay
+      </a>
+    </div>
+
+    <!-- 🔸 Trường hợp có sản phẩm trong giỏ -->
+    <div *ngIf="cart.length > 0">
+      <!-- 🔹 Danh sách sản phẩm -->
+      <ul id="cartList" class="list-group mb-4 shadow-sm">
+        <li *ngFor="let item of cart"
+          class="list-group-item cart-item d-flex align-items-center justify-content-between flex-wrap">
+          <!-- 🔸 Thông tin sản phẩm -->
+          <div class="d-flex align-items-center flex-wrap gap-3">
+            <img [src]="item.img" alt="{{ item.name }}" class="cart-img" />
+            <div>
+              <h6 class="mb-1">{{ item.name }}</h6>
+              <small class="text-muted">Giá: {{ item.gia | number }} VND</small><br />
+
+              <!-- 🔸 Điều chỉnh số lượng -->
+              <div class="d-flex align-items-center mt-1 gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQty(item)"
+                  aria-label="Giảm số lượng sản phẩm {{ item.name }}">
+                  −
+                </button>
+                <span class="fw-semibold">{{ item.quantity }}</span>
+                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQty(item)"
+                  aria-label="Tăng số lượng sản phẩm {{ item.name }}">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 🔸 Xóa sản phẩm -->
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeItem(item)"
+            aria-label="Xóa sản phẩm {{ item.name }} khỏi giỏ hàng">
+            Xóa
+          </button>
+        </li>
+      </ul>
+
+      <!-- 🔹 Tổng cộng -->
+      <div class="cart-summary text-end mb-3">
+        <h5>Tổng cộng: <span class="fw-bold">{{ total | number }}</span> VND</h5>
+      </div>
+
+      <!-- 🔹 Nút hành động -->
+      <div class="d-flex justify-content-end align-items-center gap-3 flex-wrap">
+        <button type="button" class="btn btn-outline-danger px-4" (click)="clearCart()">🗑 Xóa tất cả</button>
+        <button type="button" class="btn btn-success px-4" (click)="checkout()">💳 Thanh toán</button>
+      </div>
+
+      <!-- 🔹 Form thanh toán -->
+      <div *ngIf="showCheckout" class="mt-5 p-4 shadow-sm rounded bg-light checkout-form">
+        <h4 class="mb-3">Thông tin thanh toán</h4>
+
+        <form (ngSubmit)="submitCheckout()" #checkoutForm="ngForm" novalidate>
+          <!-- 🔸 Nếu chưa đăng nhập -->
+          <div *ngIf="!currentUser">
+            <!-- Họ và tên -->
+            <div class="mb-3">
+              <label for="fullname" class="form-label">Họ và tên</label>
+              <input type="text" id="fullname" class="form-control" name="fullname" [(ngModel)]="formData.fullname"
+                required pattern="^[A-Za-zÀ-ỹ\\s]+$" placeholder="Nhập họ và tên" aria-label="Họ và tên"
+                title="Họ và tên" />
+              <div *ngIf="checkoutForm.submitted && checkoutForm.controls['fullname']?.invalid"
+                class="text-danger small mt-1">
+                Họ tên không hợp lệ.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" name="email" [(ngModel)]="formData.email" required
+                placeholder="Nhập địa chỉ email" aria-label="Địa chỉ email" title="Địa chỉ email" />
+              <div *ngIf="checkoutForm.submitted && checkoutForm.controls['email']?.invalid"
+                class="text-danger small mt-1">
+                Email không hợp lệ.
+              </div>
+            </div>
+          </div>
+
+          <!-- 🔸 Các trường luôn hiển thị -->
+          <div class="mb-3">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input type="tel" id="phone" class="form-control" name="phone" [(ngModel)]="formData.phone" required
+              pattern="^(0[0-9]{9})$" placeholder="Nhập số điện thoại" aria-label="Số điện thoại"
+              title="Số điện thoại" />
+            <div *ngIf="checkoutForm.submitted && checkoutForm.controls['phone']?.invalid"
+              class="text-danger small mt-1">
+              Số điện thoại không hợp lệ.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="payment" class="form-label">Phương thức thanh toán</label>
+            <select id="payment" class="form-select" name="payment" [(ngModel)]="formData.payment" required
+              aria-label="Phương thức thanh toán" title="Phương thức thanh toán">
+              <option value="">-- Chọn --</option>
+              <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+              <option value="bank">Chuyển khoản ngân hàng</option>
+              <option value="momo">Ví MoMo</option>
+              <option value="zalo">ZaloPay</option>
+            </select>
+            <div *ngIf="checkoutForm.submitted && checkoutForm.controls['payment']?.invalid"
+              class="text-danger small mt-1">
+              Vui lòng chọn phương thức thanh toán.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address" class="form-label">Địa chỉ giao hàng</label>
+            <textarea id="address" class="form-control" name="address" rows="2" [(ngModel)]="formData.address" required
+              aria-label="Địa chỉ giao hàng" title="Địa chỉ giao hàng"
+              placeholder="Nhập địa chỉ nhận hàng của bạn"></textarea>
+            <div *ngIf="checkoutForm.submitted && checkoutForm.controls['address']?.invalid"
+              class="text-danger small mt-1">
+              Vui lòng nhập địa chỉ giao hàng.
+            </div>
+          </div>
+
+          <!-- 🔹 Nút xác nhận -->
+          <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary px-5">Xác nhận thanh toán</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,302 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+.img_logo {
+  width: 100px;
+  filter: brightness(0) invert(1);
+}
+
+.menu_left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.search {
+  width: 300px;
+}
+
+/* ===== menu trái */
+ul,
+li {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.menu_link {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0px;
+}
+
+.link {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.bxs-user-circle,
+.bxs-shopping-bags {
+  font-size: 25px;
+}
+
+
+.menu_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+  background-color: rgb(0, 0, 0);
+  padding: 0 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.btn_menu {
+  background: none;
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+.user_icon {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+
+.btn_menu {
+  display: none;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-wrapper .search-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+
+@media screen and (max-width: 710px) {
+  .search-wrapper input {
+    display: none;
+    position: absolute;
+    top: 40px;
+    /* xuất hiện dưới icon */
+    left: 0;
+    width: 200px;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+
+  }
+
+  header .search-wrapper .search-icon {
+    color: #fff;
+    /* icon kính lúp màu trắng */
+  }
+
+  /* Khi có class active thì mới hiện */
+  .search-wrapper input.active {
+    display: block;
+  }
+}
+
+
+/* ====== */
+@media screen and (max-width: 1024px) {
+  .link {
+    display: none;
+    /* ẩn menu mặc định */
+    flex-direction: column;
+    background: #000;
+    /* nền đen */
+    padding: 20px;
+    position: absolute;
+    top: 120px;
+    /* ngay dưới header */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 9999;
+  }
+
+  .link.show {
+    display: flex;
+    /* khi bật class "show" thì hiện */
+  }
+
+  .btn_menu {
+    display: block;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width:640px) {
+  header .position-relative {
+    display: none;
+  }
+}
+
+@media screen and (max-width:426px) {
+  .link {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(149, 149, 149);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu_header {
+    padding: 0 20px;
+    height: 80px;
+  }
+
+  .img_logo {
+    width: 70px;
+  }
+}
+
+
+.link li a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  padding: 5px 0;
+}
+
+/* underline mặc định cho trang đang active */
+.link li a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* luôn full cho active */
+  height: 2px;
+  background: rgb(255, 255, 255);
+}
+
+/* hover cho các mục khác */
+.link li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(255, 255, 255);
+  transition: 0.3s;
+}
+
+.link li a:hover::after {
+  width: 100%;
+}
+
+#cartCount {
+  font-size: 12px;
+  padding: 2px 6px;
+  position: absolute;
+  left: 10px;
+}
+
+
+#idfavourite {
+  font-size: 12px;
+  padding: 2px 6px;
+  position: absolute;
+  left: 15px;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+}
+
+.wrap {
+  position: relative;
+}
+
+.bx-up-arrow-alt {
+  background-color: #666;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 45px;
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  z-index: 1000;
+}
+
+.search-icon {
+  color: #000000;
+}
+
+.btn-scroll {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  /* trắng trong mờ */
+  color: #000;
+  /* chữ đen */
+  font-size: 2rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+  z-index: 999;
+  border: 2px solid #000;
+
+}
+
+.btn-scroll:hover {
+  background: rgba(0, 0, 0, 0.15);
+  color: #000;
+  transform: translateY(5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn-scroll i {
+  animation: bounce 1.5s infinite;
+}
+
+.dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255, 0, 0, 0.6);
+}

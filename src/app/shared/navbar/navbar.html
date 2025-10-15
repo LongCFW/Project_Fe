@@ -1,0 +1,59 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="wrap">
+    <span>
+        <button type="button" class="btn-scroll" (click)="scrollToTop()" aria-label="Cuộn lên đầu trang">
+            <i class="bx bx-chevron-up"></i>
+        </button>
+    </span>
+    <header>
+        <div id="lock1" class="menu_header">
+            <div class="menu_left">
+                <img class="img_logo" src="assets/images/Logo.png" alt="logo" />
+                <div class="position-relative search-wrapper" style="max-width:400px;">
+                    <i class="bx bx-search search-icon position-absolute top-50 start-0 translate-middle-y ms-3"
+                        (click)="toggleSearch(searchInput)">
+                    </i>
+                    <input #searchInput type="search" class="form-control ps-5 rounded-5 search" placeholder="Search..."
+                        [ngClass]="{'active': searchActive}" />
+                </div>
+            </div>
+
+            <div class="menu_right">
+                <div class="menu_link">
+                    <ul class="link" [ngClass]="{'show': menuOpen}">
+                        <li><a routerLink="/" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+                        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+                        <li><a routerLink="/products" routerLinkActive="active">Product</a></li>
+                        <li><a routerLink="/support" routerLinkActive="active">Support</a></li>
+
+                    </ul>
+                    <button type="button" class="btn_menu" (click)="toggleMenu()" aria-label="Mở menu điều hướng">
+                        <i class="bx bx-menu"></i>
+                    </button>
+
+                    <div class="user_icon">
+                        <div class="cart-icon-wrapper">
+                            <a routerLink="/cart">
+                                <i class="bx bxs-shopping-bags"></i>
+                                <span class="dot" *ngIf="cartHasItem"></span>
+                            </a>
+                        </div>
+
+                        <!-- Nếu có currentUser thì hiện avatar -->
+                        <a *ngIf="currentUser; else defaultUser" routerLink="/user"
+                            class="d-flex align-items-center gap-1">
+                            <i class="bx bxs-user-circle"></i>
+                            <span class="fw-semibold" style="font-size: 14px;">{{ currentUser.name }}</span>
+                        </a>
+
+                        <ng-template #defaultUser>
+                            <a routerLink="/user"><i class="bx bxs-user-circle"></i></a>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>

@@ -1,0 +1,197 @@
+/* =========================================================
+   🌐 Tổng thể footer
+   (Nền trắng, chữ đen, bố cục 3 cột đều nhau)
+========================================================= */
+footer {
+  background: #fff;
+  padding: 50px 0 20px;
+  font-size: 15px;
+  color: #000;
+}
+
+/* =========================================================
+   🏷 Tiêu đề các cột
+========================================================= */
+footer h5 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* =========================================================
+   🔗 Danh sách liên kết
+========================================================= */
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 10px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: #000;
+  transition: 0.3s;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   ✉️ Form đăng ký nhận email
+========================================================= */
+.subscribe-form {
+  display: flex;
+  border: 1px solid #000;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.subscribe-form input {
+  border: none;
+  padding: 10px 15px;
+  flex: 1;
+  outline: none;
+}
+
+.subscribe-form button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0 20px;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   💬 Biểu tượng mạng xã hội
+========================================================= */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding-top: 25px;
+}
+
+.social-links a {
+  text-decoration: none !important;
+
+}
+
+.social-icon {
+  font-size: 24px;
+  /* to hơn mặc định */
+  color: #000;
+  border: 1px solid #000;
+  width: 48px;
+  /* tăng kích thước vòng tròn */
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* 🎨 Hiệu ứng hover riêng từng nền tảng */
+.social-icon:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.social-icon.fb:hover {
+  background: #1877f2;
+  /* Facebook xanh dương */
+}
+
+.social-icon.ig:hover {
+  background: #e1306c;
+  /* Instagram hồng tím */
+}
+
+.social-icon.tk:hover {
+  background: #000;
+  /* TikTok đen trắng */
+}
+
+.social-icon.ln:hover {
+  background: #0a66c2;
+  /* LinkedIn xanh nhạt */
+}
+
+/* =========================================================
+   ⚖️ Dòng cuối bản quyền
+========================================================= */
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+/* =========================================================
+   📱 Responsive cho Tablet & Mobile
+========================================================= */
+
+/* Tablet (≤ 992px): Giãn dòng, form dọc, nút 100% */
+@media (max-width: 992px) {
+  footer {
+    padding: 40px 0 15px;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .subscribe-form input {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+  }
+
+  .subscribe-form button {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+}
+
+/* Mobile (≤ 576px): Nhỏ gọn, chữ và icon thu gọn */
+@media (max-width: 576px) {
+  footer h5 {
+    font-size: 15px;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+
+  .subscribe-form {
+    max-width: 90%;
+  }
+
+  .social-links {
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .social-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,145 @@
+<!-- ========================= BANNER / CAROUSEL ========================= -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
+  data-bs-pause="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-label="Slide 1" title="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"
+      title="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"
+      title="Slide 3"></button>
+  </div>
+
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/images/banner_product.png" class="d-block w-100 banner-img" alt="Banner 1">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/images/banner_product2.png" class="d-block w-100 banner-img" alt="Banner 2">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/images/banner_product3.png" class="d-block w-100 banner-img" alt="Banner 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"
+    aria-label="Previous slide" title="Previous slide">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"
+    aria-label="Next slide" title="Next slide">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</div>
+
+<!-- ========================= FILTER ========================= -->
+<div class="container my-4">
+  <div class="d-flex align-items-end flex-wrap mb-4 w-100">
+    <div class="flex-fill mx-2">
+      <label for="categoryFilter" class="form-label">Loại</label>
+      <select id="categoryFilter" name="categoryFilter" [(ngModel)]="filter.category" class="form-select"
+        title="Chọn loại sản phẩm">
+        <option value="all">Tất cả</option>
+        <option value="ao">Áo</option>
+        <option value="quan">Quần</option>
+      </select>
+    </div>
+
+
+    <div class="flex-fill mx-2">
+      <label for="subCategoryFilter" class="form-label">Loại chi tiết</label>
+      <select id="subCategoryFilter" name="subCategoryFilter" [(ngModel)]="filter.subCategory" class="form-select"
+        title="Chọn loại chi tiết sản phẩm">
+        <option value="all">Tất cả</option>
+        <option *ngFor="let sub of subCategories" [value]="sub">{{ sub }}</option>
+      </select>
+    </div>
+
+
+    <div class="flex-fill mx-2">
+      <label for="sizeFilter" class="form-label">Size</label>
+      <select id="sizeFilter" [(ngModel)]="filter.size" class="form-select" title="Chọn kích cỡ sản phẩm">
+        <option value="all">Tất cả</option>
+        <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+
+    <div class="flex-fill mx-2">
+      <label for="priceFilter" class="form-label">Khoảng giá</label>
+      <select id="priceFilter" name="priceFilter" [(ngModel)]="filter.price" class="form-select"
+        title="Lọc theo khoảng giá">
+        <option value="all">Tất cả</option>
+        <option value="0-300000">Dưới 300K</option>
+        <option value="300000-600000">300K - 600K</option>
+        <option value="600000-1000000">600K - 1M</option>
+        <option value="1000000-9999999">Trên 1M</option>
+      </select>
+    </div>
+
+    <div class="ms-auto d-flex align-items-end gap-2">
+      <!-- Nút lọc -->
+      <button id="filterBtn" type="button" class="btn btn-dark" (click)="applyFilter()" title="Lọc sản phẩm"
+        aria-label="Lọc sản phẩm">
+        <i class='bx bx-filter-alt'></i>
+      </button>
+
+      <!-- Nút reset -->
+      <button id="resetBtn" type="button" class="btn btn-outline-secondary" (click)="resetFilter()"
+        title="Làm mới bộ lọc" aria-label="Làm mới bộ lọc">
+        <i class='bx bx-refresh'></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========================= PRODUCT LIST ========================= -->
+<div class="container">
+  <div class="row" id="productList">
+    <div class="col mb-4 d-flex justify-content-center" *ngFor="let p of displayedProducts">
+      <div class="card h-100 product-card">
+        <img [src]="p.img" class="product-img" [alt]="p.name" aria-hidden="true">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ p.name }}</h5>
+          <p class="card-text fw-bold">{{ p.gia | number }} VND</p>
+          <div class="d-flex gap-2 mt-auto">
+            <button type="button" class="btn add-cart-btn flex-grow-1" (click)="addToCart(p)">
+              Thêm vào giỏ hàng
+            </button>
+            <button type="button" class="btn btn-dark" (click)="openModal(p)" title="Xem chi tiết sản phẩm"
+              aria-label="Xem chi tiết sản phẩm">
+              <i class='bx bx-show' aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nút xem thêm / thu gọn -->
+  <div class="col-12 text-center mt-4">
+    <button *ngIf="!showAll" type="button" class="btn btn-outline-secondary rounded-pill px-4" (click)="showMore()">
+      Xem thêm
+    </button>
+    <button *ngIf="showAll" type="button" class="btn btn-outline-secondary rounded-pill px-4" (click)="collapseList()">
+      Thu gọn
+    </button>
+  </div>
+  <!-- === Toast Notification === -->
+  <div class="toast-container" *ngIf="toastMessage">
+    <div class="toast-message">
+      {{ toastMessage }}
+    </div>
+  </div>
+</div>
+
+<!-- ========================= Product Detail Overlay ========================= -->
+<!-- Dùng ProductDetailComponent khi selectedProduct khác null -->
+<app-product-detail *ngIf="selectedProduct" [product]="selectedProduct" (close)="closeDetail()"
+  (addToCart)="handleAddToCart($event)">
+</app-product-detail>

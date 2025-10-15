@@ -1,0 +1,221 @@
+/* =========================================================
+   🎨 USER PAGE STYLES (Responsive, Clean, Annotated)
+   ========================================================= */
+
+/* 🌍 GLOBAL STRUCTURE ------------------------------------ */
+.user-container {
+  padding: 40px 20px;
+}
+
+/* ✅ Khung trung tâm nội dung */
+.content-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 🏷️ Tiêu đề chính */
+.page-title {
+  font-size: 28px;
+  color: #222;
+}
+
+/* 🔹 Tiêu đề form */
+.form-title {
+  font-size: 22px;
+  color: #000;
+}
+
+/* =========================================================
+   🧾 AUTH FORMS (LOGIN + SIGNUP)
+   ========================================================= */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Input custom */
+.form-control-custom {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    // border-color: #007bff;
+    outline: none;
+  }
+}
+
+/* Nút đăng nhập & đăng ký */
+.btn-login {
+  background-color: #111211;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 0;
+  border-radius: 10px;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #626c64;
+  }
+}
+
+/* Nút chuyển form (login <-> signup) */
+.link-btn {
+  background: none;
+  border: none;
+  color: #202122;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Lỗi đăng nhập */
+.error-text {
+  color: #dc3545;
+  font-size: 13px;
+}
+
+/* =========================================================
+   👤 USER INFO & PURCHASE HISTORY
+   ========================================================= */
+.user-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+#logout-btn {
+  margin-top: 12px;
+  background: #1e1d1d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: #635d5d;
+  }
+}
+
+/* Card đơn hàng */
+.order-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px 18px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+/* Header đơn hàng */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+/* Danh sách sản phẩm */
+.order-items {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dashed #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+/* =========================================================
+   📱 RESPONSIVE DESIGN (MOBILE-FIRST)
+   ========================================================= */
+
+/* ✅ MOBILE NHỎ NHẤT (320px → 480px) */
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 20px 15px;
+    box-shadow: none;
+    /* ⚠️ Giảm hiệu ứng bóng để nhẹ máy */
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .btn-login {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
+
+/* ✅ TABLET (481px → 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .content-wrapper {
+    max-width: 600px;
+    padding: 30px;
+  }
+
+  .auth-form {
+    gap: 14px;
+  }
+
+  .order-card {
+    padding: 20px;
+  }
+}
+
+/* ✅ LAPTOP VỪA (1025px → 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .content-wrapper {
+    max-width: 700px;
+  }
+
+  .page-title {
+    font-size: 30px;
+  }
+}
+
+/* ✅ MÀN HÌNH LỚN (1441px trở lên) */
+@media (min-width: 1441px) {
+  .content-wrapper {
+    max-width: 800px;
+  }
+
+  /* ⚠️ NOTE: Những thay đổi nhỏ này để giữ bố cục đồng nhất */
+}
+
+/* =========================================================
+   ⚙️ NOTES / PHÂN TÍCH CSS
+   =========================================================
+   - Một số thuộc tính như border-radius hoặc padding lặp lại ở nhiều nơi 
+     => có thể tách ra thành biến SCSS hoặc mixin để tái sử dụng.
+   - box-shadow bị tắt ở mobile để nhẹ máy, nhưng vẫn giữ ở desktop.
+   - Các class .form-control-custom và .btn-login đang hoạt động tốt, không trùng.
+   - Các vùng responsive chia theo breakpoint rõ ràng, không ghi đè lẫn nhau.
+   - Có thể thêm dark mode bằng cách toggle theme class nếu cần sau này.
+*/
+
+#long {
+  margin-top: 120px;
+}

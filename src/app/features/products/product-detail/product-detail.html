@@ -1,0 +1,55 @@
+<!-- Overlay mờ nền -->
+<div class="overlay" (click)="onClose()"></div>
+
+<!-- Khung chi tiết sản phẩm -->
+<div class="detail-container">
+  <button 
+  type="button" 
+  class="close-btn" 
+  (click)="onClose()" 
+  aria-label="Đóng cửa sổ">
+  ✕
+</button>
+
+
+  <img [src]="product.img" alt="{{ product.name }}" class="detail-image">
+  <h3 class="product-name">{{ product.name }}</h3>
+  <p class="price">{{ product.gia | number }}₫</p>
+  <p>Kích cỡ: {{ product.size }}</p>
+  <p>Danh mục: {{ product.category }} / {{ product.subCategory }}</p>
+
+  <p class="description">
+    Mô tả: Đây là {{ product.name }} chất lượng cao, thiết kế đẹp, phù hợp nhiều dịp.
+  </p>
+
+  <div class="qty-box">
+    <button type="button" (click)="decreaseQty()" aria-label="Giảm số lượng sản phẩm">
+      −
+    </button>
+
+    <input type="number" [(ngModel)]="quantity" min="1" (input)="validateQty()" placeholder="Nhập số lượng"
+      aria-label="Số lượng sản phẩm" />
+
+    <button type="button" (click)="increaseQty()" aria-label="Tăng số lượng sản phẩm">
+      +
+    </button>
+  </div>
+
+
+  <div class="btns">
+    <button type="button" class="add-btn" (click)="onAddToCart()" aria-label="Thêm sản phẩm vào giỏ hàng">
+      🛒 Thêm vào giỏ hàng
+    </button>
+    <button type="button" class="close-btn2" (click)="onClose()" aria-label="Đóng cửa sổ chi tiết sản phẩm">
+      Đóng
+    </button>
+  </div>
+
+</div>
+
+<!-- Toast thông báo -->
+<div class="toast-container" *ngIf="toastMessage">
+  <div class="toast-message">
+    {{ toastMessage }}
+  </div>
+</div>

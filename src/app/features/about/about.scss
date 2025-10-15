@@ -1,0 +1,214 @@
+main {
+  padding-top: 120px;
+  overflow-x: hidden;
+}
+
+/* ===== Banner đầu trang ===== */
+.banner_shop {
+  width: 100%;
+  margin-top: -20px;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+/* ===== Phần giới thiệu thương hiệu ===== */
+.container {
+  .row {
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  a.btn {
+    font-size: 1rem;
+    padding: 10px 24px;
+  }
+}
+
+/* ===== Biểu đồ yêu thích ===== */
+.chart-container {
+  width: 420px;
+  margin: 0 auto;
+}
+
+/* ===== Section màu tối (giá trị cốt lõi) ===== */
+section.text-white {
+  background-color: #111;
+
+  i {
+    transition: transform 0.3s ease;
+  }
+
+  i:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* ========================= */
+/* ===== RESPONSIVE ======== */
+/* ========================= */
+
+/* --- Laptop lớn / Desktop (≥1200px) --- */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  .chart-container {
+    width: 450px;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+}
+
+/* --- Laptop nhỏ / Tablet ngang (max-width: 992px) --- */
+@media screen and (max-width: 992px) {
+  main {
+    padding-top: 100px;
+  }
+
+  .container {
+    h1 {
+      font-size: 3.2rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+    }
+  }
+
+  .chart-container {
+    width: 340px;
+  }
+
+  .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .row img {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+}
+
+/* --- Tablet dọc (max-width: 768px) --- */
+@media screen and (max-width: 768px) {
+  .container {
+    h1 {
+      font-size: 2.8rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1rem;
+      text-align: justify;
+    }
+  }
+
+  .chart-container {
+    width: 320px;
+  }
+
+  section.text-white {
+    padding: 3rem 1rem;
+  }
+
+  section.text-white .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* --- Mobile (max-width: 576px) --- */
+@media screen and (max-width: 576px) {
+  .banner_shop {
+    margin-top: -28px;
+  }
+
+  .container {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .chart-container {
+    width: 300px;
+  }
+
+  section.text-center .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  section.text-center i {
+    font-size: 2rem;
+  }
+
+  section.text-center h5 {
+    font-size: 1rem;
+  }
+
+  section.text-center p {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Mobile nhỏ (max-width: 375px) --- */
+@media screen and (max-width: 375px) {
+  .chart-container {
+    width: 260px;
+  }
+
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .container h2 {
+    font-size: 1.3rem;
+  }
+
+  .container p {
+    font-size: 0.9rem;
+  }
+
+  section.text-center i {
+    font-size: 1.8rem;
+  }
+}

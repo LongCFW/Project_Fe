@@ -1,0 +1,394 @@
+/* =====================================================
+   🎨 SUPPORT PAGE — FINAL RESTRUCTURED STYLESHEET
+   ===================================================== */
+
+/* =====================================================
+   1️⃣ HERO SECTION — Phần đầu trang
+   ===================================================== */
+.hero {
+  background: #222;
+  color: #fff;
+  padding: 80px 20px;
+  margin-top: 120px;
+  text-align: center;
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-size: 18px;
+    opacity: 0.85;
+  }
+}
+
+/* =====================================================
+   2️⃣ SECTION TITLE — Tiêu đề khu vực
+   ===================================================== */
+.section-title {
+  text-align: center;
+  margin: 40px 0 25px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   3️⃣ CONTACT CARD + FORM LIÊN HỆ
+   ===================================================== */
+.contact-card,
+.form-contact {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-card {
+  h5 {
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #333;
+    margin: 8px 0;
+  }
+
+  i {
+    color: #000;
+    margin-right: 8px;
+  }
+}
+
+.form-contact {
+
+  input,
+  textarea {
+    border-radius: 8px;
+  }
+
+  button {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+}
+
+.map-frame {
+  width: 100%;
+  height: 250px;
+  border: 0;
+  border-radius: 12px;
+}
+
+/* =====================================================
+   4️⃣ TIMELINE (DESKTOP VERSION)
+   ===================================================== */
+.timeline-container {
+  position: relative;
+  padding: 40px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background-color: #aaa;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background-color: #555;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  /* ✅ Giúp co giãn khi xuống tablet */
+}
+
+.text-block {
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+  }
+}
+
+.img-box {
+  width: 350px;
+  height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* ⚠️ NOTE: Có thể trùng Bootstrap grid */
+.col-5 {
+  display: flex;
+  align-items: center;
+}
+
+/* =====================================================
+   5️⃣ ACCORDION (TABLET & MOBILE)
+   ===================================================== */
+.tblt {
+  display: none;
+  /* ✅ Ẩn mặc định, chỉ hiện khi ≤992px */
+}
+
+.accordion {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+
+  .accordion-button {
+    background-color: #f8f8f8;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .accordion-body {
+    padding: 15px 20px;
+
+    p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .accordion-img {
+      width: 100%;
+      height: auto;
+      max-height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+}
+
+/* =====================================================
+   6️⃣ RESPONSIVE DESIGN — MỌI THIẾT BỊ
+   ===================================================== */
+
+/* DESKTOP (≥1200px) */
+@media (min-width: 1200px) {
+  .hero {
+    padding: 100px 20px;
+  }
+
+  .text-block h3 {
+    font-size: 24px;
+  }
+}
+
+/* TABLET LANDSCAPE (≤992px) */
+@media (max-width: 992px) {
+  .hero {
+    margin-top: 100px;
+    padding: 60px 20px;
+
+    h1 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 17px;
+    }
+  }
+
+  .timeline-container {
+    padding: 25px 0;
+  }
+
+  .img-box {
+    width: 100%;
+    height: 200px;
+  }
+
+  .text-block h3 {
+    font-size: 20px;
+  }
+
+  /* ✅ Chuyển sang accordion */
+  .dsk {
+    display: none;
+  }
+
+  .tblt {
+    display: block;
+  }
+}
+
+/* TABLET PORTRAIT & MOBILE LARGE (≤768px) */
+@media (max-width: 768px) {
+  .timeline-container {
+    display: none;
+    /* Ẩn timeline hoàn toàn */
+  }
+
+  .contact-card,
+  .form-contact {
+    padding: 20px;
+  }
+
+  .map-frame {
+    height: 200px;
+  }
+
+  .hero {
+    padding: 50px 15px;
+
+    h1 {
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .accordion-body .accordion-img {
+    max-height: 200px;
+  }
+
+  .section-title {
+    margin: 30px 0 15px;
+  }
+}
+
+/* SMALL MOBILE (≤480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 10px;
+
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .form-contact input,
+  .form-contact textarea {
+    font-size: 14px;
+  }
+
+  .accordion-body {
+    padding: 12px;
+
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  .accordion-button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .contact-card {
+    font-size: 14px;
+  }
+
+  .map-frame {
+    height: 180px;
+  }
+
+  .img-box {
+    height: 160px;
+  }
+}
+
+/* MINI DEVICE (≤320px) */
+@media (max-width: 320px) {
+  .accordion-body img {
+    width: 100%;
+    height: auto;
+    max-height: 120px;
+  }
+
+  .hero {
+    padding: 30px 8px;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .form-contact input,
+  .form-contact textarea {
+    font-size: 13px;
+  }
+}
+
+/* =====================================================
+   🧾 NOTE & REVIEW CHECKLIST
+   ===================================================== */
+/*
+🟢 ĐÃ CẬP NHẬT:
+- Accordion chỉ hiện khi ≤992px.
+- Timeline chỉ hiện khi >992px.
+- Bổ sung nội dung dài hơn giúp bố cục cân đối hơn khi co lại.
+- Thêm line-height hợp lý để chữ thoáng, dễ đọc.
+- Ảnh giữ tỉ lệ và không méo (object-fit: cover).
+- Card & form responsive hoàn chỉnh.
+
+🟡 Cần kiểm tra trùng class:
+  - .col-5 (nếu bootstrap có, nên xoá tại đây).
+  - .timeline-item có thể chịu ảnh hưởng bởi grid global.
+
+🟠 Có thể thêm “gap” hoặc “justify-content” nếu cần chỉnh spacing trong grid.
+
+✅ Giao diện hiện tương thích tốt với các breakpoint:
+   - 320px → 480px → 768px → 992px → 1200px → 1440px+
+   - Tablet: Accordion bật, Timeline ẩn.
+   - Desktop: Timeline bật, Accordion ẩn.
+*/

@@ -1,0 +1,344 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="wrap">
+  <main>
+    <div class="container-fluid p-0">
+      <div class="position-relative text-center text-white">
+        <img src="assets/images/banner.jpeg" class="img-fluid w-100" alt="banner">
+
+        <div class="position-absolute top-50 start-50 translate-middle banner-center">
+          <div class="banner-text">
+            <h1>ĐỊNH NGHĨA PHONG CÁCH MỚI</h1>
+          </div>
+          <button class="btn-scroll" (click)="scrollTo('loai1')" aria-label="Cuộn xuống phần loại 1"
+            title="Cuộn xuống phần loại 1" type="button">
+            <i class="bx bx-chevron-down" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid d-flex align-items-center cement-bg" style="height:auto; padding: 20px;">
+      <div class="row text-center w-100">
+        <div class="col-6 col-md-3 mb-3 mb-md-0 feature-box">
+          <i class='bx bxs-truck'></i>
+          <p class="mb-0">Free Shipping Over $50</p>
+        </div>
+        <div class="col-6 col-md-3 mb-3 mb-md-0 feature-box">
+          <i class='bx bx-shield-quarter'></i>
+          <p class="mb-0">Quality Assurance</p>
+        </div>
+        <div class="col-6 col-md-3 mb-3 mb-md-0 feature-box">
+          <i class='bx bx-package'></i>
+          <p class="mb-0">Return within 14 days</p>
+        </div>
+        <div class="col-6 col-md-3 feature-box">
+          <i class='bx bx-chat'></i>
+          <p class="mb-0">Support 24/7</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="loai1" data-aos="fade-up">
+      <div class="container loai1">
+        <div class="content_loai">
+          <div class="collection-header-wrapper">
+            <div class="collection-header">
+              <h1 class="brand-name">NL</h1>
+              <h2 class="collection-title">COLLECTION HOT</h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-slider position-relative">
+          <button type="button" class="nav-btn prev" (click)="prevGroup()" aria-label="Xem nhóm trước">
+            &#10094;
+          </button>
+
+          <div class="row g-4">
+            <!-- ✅ Chỉ cần 1 vòng lặp -->
+            <div class="col-md-4" *ngFor="let card of cardGroups[currentGroup]">
+              <div class="position-relative overflow-hidden rounded shadow-sm">
+                <!-- ✅ Hình ảnh có alt và title -->
+                <img [src]="card.img" alt="" aria-hidden="true" class="category-img" />
+                <!-- ✅ Nút có aria-label và type -->
+                <div class="overlay position-absolute start-50 translate-middle">
+                  <button type="button" class="btn btn-overlay" [attr.aria-label]="'Xem thêm ' + card.label"
+                    [title]="'Xem thêm ' + card.label">
+                    {{ card.label }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="nav-btn next" (click)="nextGroup()" aria-label="Xem nhóm kế tiếp">
+            &#10095;
+          </button>
+
+
+          <div class="indicator text-center mt-4">
+            <span *ngFor="let dot of cardGroups; let i = index" [class.active]="i === currentGroup" class="dot"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="bestsaler loai">
+      <div class="container loai2">
+        <div class="content_loai1">
+          <div class="title_best_seller" data-aos="fade-right">
+            <h2>Best seller</h2>
+            <p>Trải nghiệm những sản phẩm tốt nhất tại cửa hàng của chúng tôi!</p>
+          </div>
+          <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn_loai2" (click)="toggleMore()"
+            data-aos="fade-left" aria-label="Xem tất cả sản phẩm">
+            Xem tất cả
+          </button>
+        </div>
+
+        <!-- danh sách mặc định -->
+        <div class="container py-5">
+          <div class="row g-4">
+            <div class="col-lg-3 col-sm-6" *ngFor="let item of defaultProducts">
+              <div class="product-card">
+                <div class="product-img">
+                  <img class="product-img-fixed" [src]="item.img" alt="Product">
+                </div>
+                <div class="product-info">
+                  <h6>{{item.name}}</h6>
+                  <div class="product-price show">{{item.price}}</div>
+                  <div class="add-to-cart">
+                    <button type="button" class="btn btn-sm" (click)="addToCart(item)"
+                      aria-label="Thêm sản phẩm vào giỏ hàng">
+                      ADD TO CART
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- danh sách mở rộng (ẩn/hiện) -->
+        <div class="extra-list" [class.active]="showMore">
+          <div class="container py-5">
+            <div class="row g-4">
+              <div class="col-lg-3 col-sm-6" *ngFor="let item of moreProducts">
+                <div class="product-card">
+                  <div class="product-img">
+                    <img class="product-img-fixed" [src]="item.img" alt="Product">
+                  </div>
+                  <div class="product-info">
+                    <h6>{{item.name}}</h6>
+                    <div class="product-price show">{{item.price}}</div>
+                    <div class="add-to-cart">
+                      <button type="button" class="btn btn-sm" (click)="addToCart(item)"
+                        aria-label="Thêm sản phẩm vào giỏ hàng">
+                        ADD TO CART
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-end">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4 btn-collapse" *ngIf="showMore"
+            (click)="toggleMore(true)" aria-label="Thu gọn danh sách sản phẩm">
+            Thu gọn
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="New_Arrivals">
+      <div class="container loai3 ">
+        <div class="content_loai1">
+          <div class="title_best_seller" data-aos="fade-right">
+            <h2>Hàng mới về</h2>
+            <p>Trải nghiệm những sản phẩm tốt nhất tại cửa hàng của chúng tôi!</p>
+          </div>
+          <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn_loai3"
+            (click)="toggleMoreNew_Arrivals()" data-aos="fade-left" aria-label="Xem tất cả sản phẩm mới">
+            Xem tất cả
+          </button>
+        </div>
+        <div class="container py-5">
+          <!-- danh sách mặc định -->
+          <div class="container py-5">
+            <div class="row g-4">
+              <div class="col-lg-3 col-sm-6" *ngFor="let item of default">
+                <div class="product-card">
+                  <div class="product-img">
+                    <img class="product-img-fixed" [src]="item.img" alt="Product">
+                  </div>
+                  <div class="product-info">
+                    <h6>{{item.name}}</h6>
+                    <div class="product-price show">{{item.price}}</div>
+                    <div class="add-to-cart">
+                      <button type="button" class="btn btn-sm" (click)="addToCart(item)"
+                        aria-label="Thêm sản phẩm vào giỏ hàng">
+                        ADD TO CART
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- danh sách mở rộng (ẩn/hiện) -->
+          <div class="extra-list_V2" [class.active]="show">
+            <div class="container py-5">
+              <div class="row g-4">
+                <div class="col-lg-3 col-sm-6" *ngFor="let item of more">
+                  <div class="product-card">
+                    <div class="product-img">
+                      <img class="product-img-fixed" [src]="item.img" alt="Product">
+                    </div>
+                    <div class="product-info">
+                      <h6>{{item.name}}</h6>
+                      <div class="product-price show">{{item.price}}</div>
+                      <div class="add-to-cart">
+                        <button type="button" class="btn btn-sm" (click)="addToCart(item)"
+                          aria-label="Thêm sản phẩm vào giỏ hàng">
+                          ADD TO CART
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 text-end">
+            <button type="button" class="btn btn-outline-secondary rounded-pill px-4 btn-collapse" *ngIf="showMore"
+              (click)="toggleMore(true)" aria-label="Thu gọn danh sách sản phẩm">
+              Thu gọn
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ===== 5. Ưu đãi đặc biệt ===== -->
+    <section class="container my-5">
+      <div class="p-5 bg-dark text-white text-center rounded-3" data-aos="fade-right">
+        <h3 class="mb-3">Miễn phí vận chuyển cho đơn hàng trên 1.200.000₫</h3>
+        <p>Hãy nhanh tay mua sắm để nhận ưu đãi hấp dẫn này!</p>
+        <a routerLink="/products" class="btn btn-light btn-lg">Mua ngay</a>
+      </div>
+    </section>
+
+    <!-- ===== 6. Blog / Inspiration ===== -->
+    <section class="container my-5">
+      <h3 class="text-center mb-4">Blog & Inspiration</h3>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-right">
+          <div class="card h-100">
+            <img src="assets/images/item_sanpham2.jpg" class="card-img-top" alt="Xu hướng">
+            <div class="card-body">
+              <h5 class="card-title">5 xu hướng thời trang nam Hàn 2025</h5>
+              <p class="card-text text-muted">Khám phá gam màu, chất liệu và outfit chuẩn phong cách Hàn...</p>
+              <a href="https://blog.delivered.co.kr/vi/k-fashion/korean-fashion-trends/2025-korean-spring-fashion-trends-casual-women-men-clothes/"
+                target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">
+                Đọc thêm
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="card h-100">
+            <img src="assets/images/so_mi.jpg" class="card-img-top" alt="Mix đồ">
+            <div class="card-body">
+              <h5 class="card-title">3 cách phối sơ mi trắng không lỗi thời 2025</h5>
+              <p class="card-text text-muted">Sơ mi trắng – item basic nhưng đa phong cách, từ công sở đến hẹn hò...
+              </p>
+              <a href="https://thanhnien.vn/thoi-trang-tre/nhung-cach-phoi-do-voi-ao-so-mi-trang-dep-nhat-mua-he-2025-18525061718402641.htm"
+                target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">Đọc thêm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-left">
+          <div class="card h-100">
+            <img src="assets/images/item_sanpham2_1.jpg" class="card-img-top" alt="Lifestyle">
+            <div class="card-body">
+              <h5 class="card-title">Phong cách sống tối giản của giới trẻ Hàn</h5>
+              <p class="card-text text-muted">Minimalism không chỉ là thời trang mà còn là phong cách sống...</p>
+              <a href="https://hancook.vn/tin-tuc/phong-cach-song-va-thoi-trang-duong-pho-cua-gioi-tre-han-quoc.html"
+                target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm">Đọc thêm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. Đánh giá khách hàng ===== -->
+    <section class="container my-5">
+      <h3 class="text-center mb-4">Khách hàng nói gì về chúng tôi</h3>
+      <div class="card-slider position-relative">
+        <!-- nút prev -->
+        <button type="button" class="nav-btn prev" (click)="prevTestimonial()" aria-label="Chuyển về đánh giá trước">
+          &#10094;
+        </button>
+
+        <div class="row g-4">
+          <ng-container *ngFor="let card of testimonialGroups[currentTestimonial]">
+            <div class="col-md-4">
+              <div class="card text-center p-4 h-100">
+                <img [src]="card.img" class="rounded-circle mx-auto mb-3" alt="avatar">
+                <p class="text-muted">{{ card.text }}</p>
+                <h6 class="fw-bold">{{ card.name }}</h6>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- nút next -->
+        <button type="button" class="nav-btn next" (click)="nextTestimonial()"
+          aria-label="Chuyển tới đánh giá tiếp theo">
+          &#10095;
+        </button>
+
+        <!-- dots indicator -->
+        <div class="indicator text-center mt-4">
+          <span *ngFor="let dot of testimonialGroups; let i = index" [class.active]="i === currentTestimonial"
+            class="dot"></span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="py-5" style="background-color: rgb(149, 149, 149);">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Text bên trái -->
+          <div class="col-lg-6 feature-text">
+            <h6>TRẢI NGHIỆM TỐT NHẤT</h6>
+            <h2>Sự thoải mái được thiết kế riêng: <br> Tối giản nhưng không đơn giản</h2>
+            <button type="button" class="btn btn_banner" routerLink="/products" aria-label="Xem tất cả sản phẩm">
+              View All
+            </button>
+          </div>
+
+          <!-- Ảnh bên phải -->
+          <div class="col-lg-6 feature-img">
+            <img src="assets/images/banner.jpg" alt="Sofa">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- thông báo đã mua hàng -->
+    <div class="toast-container" *ngIf="toastMessage">
+      <div class="toast-message">
+        {{ toastMessage }}
+      </div>
+    </div>
+  </main>
+</div>
