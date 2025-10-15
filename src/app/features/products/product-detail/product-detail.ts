@@ -38,7 +38,7 @@ export class ProductDetail {
   // ✅ emit cả quantity, không tự update localStorage ở đây
   onAddToCart() {
     this.addToCart.emit({ product: this.product, quantity: this.quantity });
-    this.showToast(`✅ ${this.product.name} đã được thêm vào giỏ hàng!`);
+    this.showToast(`${this.product.name} đã được thêm vào giỏ hàng!`);
     // không gọi this.onClose() → modal vẫn mở
   }
 

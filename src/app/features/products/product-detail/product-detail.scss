@@ -171,12 +171,16 @@
 
 ///
 /// 
+/* === Toast Notification === */
 .toast-container {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
+  top: 70px;
+  left: 50%; /* ✅ căn giữa màn hình */
+  transform: translateX(-50%);
   z-index: 3000;
   animation: fadeIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  width: 90%; /* ✅ giới hạn tối đa 90% chiều rộng màn hình */
+  max-width: 400px; /* không quá to trên desktop */
 }
 
 .toast-message {
@@ -184,20 +188,34 @@
   color: #fff;
   padding: 12px 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-size: 15px;
   font-weight: 500;
   display: flex;
   align-items: center;
+  justify-content: center; /* ✅ text nằm giữa */
+  text-align: center;
   gap: 8px;
+  word-wrap: break-word; /* ✅ nếu text dài thì tự xuống dòng */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 @keyframes fadeOut {
-  to { opacity: 0; transform: translateY(20px); }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
 }
+
 

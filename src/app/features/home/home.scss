@@ -1,6 +1,9 @@
 html,
 body {
   overflow-x: hidden;
+  overflow-y: auto;
+  /* ✅ cho phép cuộn dọc tự nhiên */
+  height: 100%;
 }
 
 /* ====menu ẩn====== */
@@ -76,7 +79,6 @@ main {
   height: 60px;
   border-radius: 50%;
   background: rgba(34, 34, 34, 0.85);
-  /* đen trong mờ để không che hình */
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
@@ -85,8 +87,13 @@ main {
   justify-content: center;
   transition: all 0.3s ease;
   margin-top: 280px;
+  z-index: 10;
+  /* Đảm bảo nằm trên banner */
+  position: relative;
+  /* hoặc absolute nếu bạn muốn đè hẳn */
 }
 
+/* Hover hiệu ứng */
 .btn-scroll:hover {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
@@ -107,10 +114,29 @@ main {
   }
 
   50% {
-    transform: translateY(6px);
+    transform: translateY(5px);
   }
 }
 
+/* ẨN khi nhỏ hơn laptop L (mặc định Bootstrap lg = 992px, 
+   nếu bạn muốn laptop L thật sự = 1200px, dùng breakpoint xxl) */
+
+/* Nếu bạn muốn ẩn khi nhỏ hơn 1200px */
+@media (max-width: 1199.98px) {
+  .btn-scroll {
+    display: none !important;
+  }
+}
+
+/* (Tùy chọn) Nếu muốn nút nằm thấp hơn một chút ở màn hình to */
+@media (min-width: 1200px) {
+  .btn-scroll {
+    margin-top: 340px;
+    /* điều chỉnh cho phù hợp ảnh banner */
+  }
+}
+
+///
 #loai1 {
   scroll-margin-top: 130px;
   /* bù trừ đúng chiều cao header */
@@ -528,11 +554,11 @@ main {
 }
 
 .nav-btn.prev {
-  left: -55px;
+  left: 10px;
 }
 
 .nav-btn.next {
-  right: -55px;
+  right: 10px;
 }
 
 .indicator .dot {
@@ -629,18 +655,29 @@ main {
 .toast-container {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* ✅ căn giữa màn hình */
   z-index: 9999;
+  width: 90%;
+  /* ✅ chiếm tối đa 90% chiều ngang màn hình */
+  max-width: 400px;
+  /* tránh bị quá to trên màn lớn */
 }
 
 .toast-message {
   background-color: #3a3e3c;
   color: white;
   padding: 12px 20px;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  /* căn giữa text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  word-wrap: break-word;
+  /* ✅ tự xuống dòng nếu dài */
   animation: fadeInOut 3s forwards;
 }
+
 
 @keyframes fadeInOut {
   0% {

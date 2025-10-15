@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="container-fluid d-flex align-items-center cement-bg" style="height:auto; padding: 20px;">
-      <div class="row text-center w-100">
+      <div class="row text-center w-100 g-0">
         <div class="col-6 col-md-3 mb-3 mb-md-0 feature-box">
           <i class='bx bxs-truck'></i>
           <p class="mb-0">Free Shipping Over $50</p>
@@ -162,10 +162,10 @@
             <h2>Hàng mới về</h2>
             <p>Trải nghiệm những sản phẩm tốt nhất tại cửa hàng của chúng tôi!</p>
           </div>
-          <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn_loai3"
+          <!-- <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn_loai3"
             (click)="toggleMoreNew_Arrivals()" data-aos="fade-left" aria-label="Xem tất cả sản phẩm mới">
             Xem tất cả
-          </button>
+          </button> -->
         </div>
         <div class="container py-5">
           <!-- danh sách mặc định -->
@@ -192,7 +192,7 @@
           </div>
 
           <!-- danh sách mở rộng (ẩn/hiện) -->
-          <div class="extra-list_V2" [class.active]="show">
+          <!-- <div class="extra-list_V2" [class.active]="show">
             <div class="container py-5">
               <div class="row g-4">
                 <div class="col-lg-3 col-sm-6" *ngFor="let item of more">
@@ -214,13 +214,13 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-12 text-end">
+          </div> -->
+          <!-- <div class="col-12 text-end">
             <button type="button" class="btn btn-outline-secondary rounded-pill px-4 btn-collapse" *ngIf="showMore"
               (click)="toggleMore(true)" aria-label="Thu gọn danh sách sản phẩm">
               Thu gọn
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>

@@ -114,10 +114,7 @@ button.btn-sm {
 
 /////////////
 /// 
-.banner-img {
-  height: 800px;
-  object-fit: cover;
-}
+
 
 .product-card {
   width: 260px;
@@ -143,94 +140,60 @@ button.btn-sm {
     background-color: #444;
   }
 }
-
-.chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #212121;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  padding: 15px;
-  cursor: pointer;
-  font-size: 20px;
-  z-index: 2000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+///
+/* Ảnh banner: hiển thị đầy đủ, không méo */
+.banner-img {
+  width: 100%;
+  height: 100%; /* ✅ đổi từ auto sang 100% để ảnh luôn lấp đầy khung */
+  object-fit: cover; /* ✅ giữ cover để ảnh phủ khung nhưng có thể điều chỉnh vị trí */
+  object-position: top; /* ✅ ưu tiên phần trên của ảnh để không bị cắt đầu */
+  display: block;
 }
 
-.chatbot {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 300px;
-  height: 400px;
-  background: white;
-  border-radius: 15px;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 2000;
+/* Giữ tỷ lệ chiều cao hợp lý cho carousel */
+.carousel-item {
+  height: 100vh; /* ✅ đổi từ max-height sang height để khung luôn cố định */
   overflow: hidden;
+}
 
-  &.show {
-    display: flex;
+/* Responsive cho mobile nhỏ */
+@media screen and (max-width: 480px) {
+  .carousel-item {
+    height: 55vh; /* ✅ chiều cao vừa phải cho mobile */
   }
 
-  .chat-header {
-    background: #212121;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .chat-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-
-    .message {
-      margin: 5px 0;
-      padding: 8px 12px;
-      border-radius: 10px;
-      max-width: 80%;
-    }
-
-    .user {
-      align-self: flex-end;
-      background: #d1f7c4;
-    }
-
-    .bot {
-      align-self: flex-start;
-      background: #f1f1f1;
-    }
-  }
-
-  .chat-footer {
-    display: flex;
-
-    input {
-      flex: 1;
-      border: none;
-      padding: 8px;
-      outline: none;
-    }
-
-    button {
-      background: #212121;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-    }
+  .banner-img {
+    object-fit: contain; /* ✅ tránh cắt ảnh trên màn hình nhỏ */
+    object-position: center; /* ✅ căn giữa cho ảnh nhỏ */
   }
 }
 
-.carousel-inner {
-  margin-top: 115px;
+/* Responsive cho tablet */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .carousel-item {
+    height: 80vh;
+  }
+
+  .banner-img {
+    object-fit: cover;
+    object-position: top;
+  }
 }
+
+/* Desktop lớn */
+@media screen and (min-width: 1025px) {
+  .carousel-item {
+    height: 100vh;
+  }
+
+  .banner-img {
+    object-fit: cover;
+    object-position: top;
+  }
+}
+/// 
+
+
 
 /* Giúp form filter gọn hơn */
 .form-label {
@@ -241,9 +204,15 @@ button.btn-sm {
 .toast-container {
   position: fixed;
   bottom: 30px;
-  left: 30px;
+  left: 50%;
+  /* ✅ căn giữa màn hình */
+  transform: translateX(-50%);
   z-index: 3000;
   animation: fadeIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  width: 90%;
+  /* ✅ giới hạn tối đa 90% chiều rộng màn hình */
+  max-width: 400px;
+  /* không quá to trên desktop */
 }
 
 .toast-message {
@@ -256,25 +225,30 @@ button.btn-sm {
   font-weight: 500;
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* ✅ text nằm giữa */
+  text-align: center;
   gap: 8px;
+  word-wrap: break-word;
+  /* ✅ nếu text dài thì tự xuống dòng */
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate(-50%, 20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
 @keyframes fadeOut {
   to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate(-50%, 20px);
   }
 }
 
@@ -402,6 +376,7 @@ button.btn-sm {
   align-items: center;
   justify-content: center;
   height: 45px;
+
   &:hover {
     background-color: #343a40; // hover sáng nhẹ giống filter
     transform: scale(1.05);

@@ -125,7 +125,7 @@ export class ProductList {
   addToCart(p: Product, quantity: number = 1) {
     this.cartState.addToCart({ ...p, quantity }); // dùng quantity truyền vào
     this.cartState.setHasItem(true);
-    this.showToast(`✅ ${p.name} đã được thêm vào giỏ hàng!`);
+    this.showToast(`${p.name} đã được thêm vào giỏ hàng!`);
   }
 
   // ==========================
