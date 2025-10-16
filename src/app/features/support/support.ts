@@ -95,7 +95,7 @@ export class Support implements AfterViewInit {
 
     // ✅ Khi form hợp lệ:
     console.log("📩 Form data:", this.formData);
-    alert("✅ Cảm ơn bạn! Tin nhắn đã được gửi thành công.");
+    alert("Cảm ơn bạn! Tin nhắn đã được gửi thành công.");
     form.resetForm(); // reset form sau khi gửi
   }
 
